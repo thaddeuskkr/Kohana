@@ -1,10 +1,11 @@
 import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { Shoukaku, Connectors } from 'shoukaku';
 import { Intents } from 'discord.js';
+import { AutoPoster } from 'topgg-autoposter';
+import { Queue } from './util/queue.js';
 import config from './config.js';
 import Util from './util/util.js';
 import '@sapphire/plugin-logger/register';
-import { Queue } from './util/queue.js';
 
 const client = new SapphireClient({ 
     intents: [
@@ -38,5 +39,6 @@ client.config = config;
 client.shoukaku = new Shoukaku(new Connectors.DiscordJS(client), client.config.lavalink);
 client.util = Util;
 client.queue = new Queue(client);
+client.ap = AutoPoster(client.config.dbl, client);
 
 client.login(client.config.token);
