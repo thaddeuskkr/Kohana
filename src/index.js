@@ -1,4 +1,4 @@
-import { LogLevel, SapphireClient } from '@sapphire/framework';
+import { LogLevel, SapphireClient, container } from '@sapphire/framework';
 import { Shoukaku, Connectors } from 'shoukaku';
 import { Intents } from 'discord.js';
 import { AutoPoster } from 'topgg-autoposter';
@@ -43,5 +43,9 @@ client.shoukaku = new Shoukaku(new Connectors.DiscordJS(client), client.config.l
 client.util = Util;
 client.queue = new Queue(client);
 client.ap = AutoPoster(client.config.dbl, client);
+
+process.on('unhandledRejection', (error) => {
+    container.logger.error(error);
+});
 
 client.login(client.config.token);
