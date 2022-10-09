@@ -6,7 +6,7 @@ export class SkipCommand extends Command {
             ...options,
             name: 'skip',
             description: 'Skips the currently playing track.',
-            preconditions: ['sameVoice', 'voice', 'dispatcher']
+            preconditions: ['voice', 'sameVoice', 'dispatcher']
         });
     }
 
@@ -21,7 +21,7 @@ export class SkipCommand extends Command {
     
     async chatInputRun(interaction) {
         const dispatcher = this.container.client.queue.get(interaction.guildId);
-        await interaction.reply({ embeds: [this.container.client.util.successEmbed(`Skipped **${dispatcher.queue.current.info.title}** - **${dispatcher.queue.current.info.author}**.`)] });
+        await interaction.reply({ embeds: [this.container.client.util.successEmbed(`Skipped **${dispatcher.current.info.title}** - **${dispatcher.current.info.author}**.`)] });
         dispatcher.player.stopTrack();
     }
 }
