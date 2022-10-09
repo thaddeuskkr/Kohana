@@ -6,30 +6,30 @@ export default class Util {
         if (str) {
             return new MessageEmbed()
                 .setDescription(`${str}`)
-                .setColor(container.client.config.color);
+                .setColor(container.client.config.color || 'RANDOM');
         }
         return new MessageEmbed()
             .setFooter(container.client.config.footer)
-            .setColor(container.client.config.color);
+            .setColor(container.client.config.color || 'RANDOM');
     }
     static errorEmbed(str) {
         if (str) {
             return new MessageEmbed()
-                .setDescription(`<a:red:1028261185918865408> ${str}`)
-                .setColor(container.client.config.errorColor);
+                .setDescription(`${container.client.config.emojis.error} ${str}`)
+                .setColor(container.client.config.errorColor || 'RED');
         }
         return new MessageEmbed()
             .setFooter(container.client.config.footer)
-            .setColor(container.client.config.errorColor);
+            .setColor(container.client.config.errorColor || 'RED');
     }
     static successEmbed(str) {
         if (str) {
             return new MessageEmbed()
-                .setDescription(`<a:green:1009497462978924604> ${str}`)
-                .setColor(container.client.config.successColor);
+                .setDescription(`${container.client.config.emojis.success} ${str}`)
+                .setColor(container.client.config.successColor || 'GREEN');
         }
         return new MessageEmbed()
             .setFooter(container.client.config.footer)
-            .setColor(container.client.config.successColor);
+            .setColor(container.client.config.successColor || 'GREEN');
     }
 }
