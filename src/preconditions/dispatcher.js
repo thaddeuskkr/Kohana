@@ -9,8 +9,12 @@ export class DispatcherPrecondition extends Precondition {
         });
     }
     async chatInputRun(interaction) {
+        return this.checkDispatcher(interaction);
+    }
+
+    async checkDispatcher(interaction) {
         const dispatcher = this.container.client.queue.get(interaction.guildId);
-        if (!dispatcher || !dispatcher?.queue?.current) return this.error({ message: 'There is nothing playing.' });
+        if (!dispatcher || !dispatcher?.current) return this.error({ message: 'There is nothing playing.' });
         else return this.ok();
     }
 }

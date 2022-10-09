@@ -6,7 +6,7 @@ export class ShuffleCommand extends Command {
             ...options,
             name: 'shuffle',
             description: 'Shuffles the queue.',
-            preconditions: ['sameVoice', 'voice', 'dispatcher']
+            preconditions: ['voice', 'sameVoice', 'dispatcher']
         });
     }
 

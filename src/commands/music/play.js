@@ -6,7 +6,7 @@ export class PlayCommand extends Command {
             ...options,
             name: 'play',
             description: 'Plays music from the multiple supported sources.',
-            preconditions: ['sameVoice', 'voice']
+            preconditions: ['voice', 'sameVoice']
         });
     }
     

@@ -13,7 +13,7 @@ export class SameVoicePrecondition extends Precondition {
     }
 
     async checkInSameVc(member, me) {
-        if (!me.voice?.channel?.id) return this.ok();
-        return member.voice?.channel?.id === me.voice?.channel?.id ? this.ok() : this.error({ message: `Join <#${me.voice.channel.id}> before executing this command.` });
+        if (me.voice.channelId === null) return this.ok();
+        return member.voice.channel.id === me.voice.channel.id ? this.ok() : this.error({ message: `Join <#${me.voice.channel.id}> before executing this command.` });
     }
 }
