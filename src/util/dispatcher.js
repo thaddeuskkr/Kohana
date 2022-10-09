@@ -29,7 +29,7 @@ export default class Dispatcher {
                     _notifiedOnce = false;
                 }
                 this.nowPlayingMessage = await this.channel
-                    .send({ embeds: [ container.client.util.embed(`<a:playing:1028255145814933514> [**${this.current.info.title}** - **${this.current.info.author}**](${this.current.info.uri}) \`${Dispatcher.humanizeTime(this.current.info.length)}\` (${this.current.info.requester.toString()})`) ] })
+                    .send({ embeds: [ container.client.util.embed(`${container.client.config.emojis.playing} [**${this.current.info.title}** - **${this.current.info.author}**](${this.current.info.uri}) \`${Dispatcher.humanizeTime(this.current.info.length)}\` (${this.current.info.requester.toString()})`) ] })
                     .catch(() => null);
             })
             .on('end', async () => {
