@@ -72,7 +72,7 @@ export class PlayCommand extends Command {
                 for (const track of result.tracks) await this.container.client.queue.handle(interaction.guild, interaction.member, interaction.channel, node, track);
             }
             await interaction.editReply({ embeds: [this.container.client.util.successEmbed(playlist ? `Queued **${result.tracks.length + 1} tracks** from **${result.playlistInfo.name}**.` : `Queued [**${track.info.title}** - **${track.info.author}**](${track.info.uri}).`)] }).catch(() => null);
-            if (!dispatcher.current) dispatcher?.play();
+            if (!dispatcher?.current) dispatcher?.play();
             return;
         }
 
@@ -82,6 +82,6 @@ export class PlayCommand extends Command {
         const dispatcher = await this.container.client.queue.handle(interaction.guild, interaction.member, interaction.channel, node, track, next);
         if (dispatcher === 'Busy') return interaction.editReply({ embeds: [this.container.client.util.errorEmbed('The dispatcher is currently busy, please try again later.')] });
         await interaction.editReply({ embeds: [this.container.client.util.successEmbed(`Queued [**${track.info.title}** - **${track.info.author}**](${track.info.uri}).`)] }).catch(() => null);
-        if (!dispatcher.current) dispatcher?.play();
+        if (!dispatcher?.current) dispatcher?.play();
     }
 }
