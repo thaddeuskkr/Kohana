@@ -2,10 +2,13 @@ import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { Shoukaku, Connectors } from 'shoukaku';
 import { Intents } from 'discord.js';
 import { AutoPoster } from 'topgg-autoposter';
+
 import { Queue } from './util/queue.js';
 import config from './config.js';
 import Util from './util/util.js';
+
 import '@sapphire/plugin-logger/register';
+import '@sapphire/plugin-hmr/register';
 
 const client = new SapphireClient({ 
     intents: [
