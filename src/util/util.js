@@ -32,4 +32,15 @@ export default class Util {
             .setFooter(container.client.config.footer)
             .setColor(container.client.config.successColor || 'GREEN');
     }
+    static createProgressBar(current, end, size) {
+        if (isNaN(current) || isNaN(end)) return 'Arguments current and end have to be integers.';
+        const percentage = current / end;
+        const progress = Math.round(size * percentage);
+        const emptyProgress = size - progress;
+
+        const progressText = '▇'.repeat(progress);
+        const emptyProgressText = '—'.repeat(emptyProgress);
+
+        return `[${progressText}${emptyProgressText}]`;
+    }
 }
