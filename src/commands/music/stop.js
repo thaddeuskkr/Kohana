@@ -1,6 +1,4 @@
 import { Command } from '@sapphire/framework';
-import { promisify } from 'util';
-const Wait = promisify(setTimeout);
 
 export class StopCommand extends Command {
     constructor(context, options) {
@@ -8,7 +6,7 @@ export class StopCommand extends Command {
             ...options,
             name: 'stop',
             description: 'Stops the music in your server.',
-            preconditions: ['sameVoice', 'voice', 'dispatcher']
+            preconditions: ['voice', 'sameVoice', 'dispatcher']
         });
     }
 
@@ -22,13 +20,12 @@ export class StopCommand extends Command {
     }
     
     async chatInputRun(interaction) {
-        const dispatcher = this.container.client.queue.get(interaction.guildId);
         await interaction.deferReply();
+        const dispatcher = this.container.client.queue.get(interaction.guildId);
         dispatcher.queue.length = 0;
         dispatcher.repeat = 'off';
         dispatcher.stopped = true;
         dispatcher.player.stopTrack();
-        Wait(500);
-        await interaction.reply({ embeds: [this.container.client.util.successEmbed('Stopped the player and cled the queue.')] });
+        await interaction.editReply({ embeds: [this.container.client.util.successEmbed('Stopped the player and cleared the queue.')] });
     }
 }
