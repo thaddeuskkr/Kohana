@@ -71,7 +71,7 @@ export class PlayCommand extends Command {
             if (playlist) {
                 for (const track of result.tracks) await this.container.client.queue.handle(interaction.guild, interaction.member, interaction.channel, node, track);
             }
-            await interaction.editReply({ embeds: [this.container.client.util.successEmbed(playlist ? `Queued **${result.tracks.length + 1} tracks** from playlist **${result.playlistInfo.name}**.` : `Queued [**${track.info.title}** - **${track.info.author}**](${track.info.uri}).`)] }).catch(() => null);
+            await interaction.editReply({ embeds: [this.container.client.util.successEmbed(playlist ? `Queued **${result.tracks.length + 1} tracks** from **${result.playlistInfo.name}**.` : `Queued [**${track.info.title}** - **${track.info.author}**](${track.info.uri}).`)] }).catch(() => null);
             if (!dispatcher.current) dispatcher?.play();
             return;
         }
