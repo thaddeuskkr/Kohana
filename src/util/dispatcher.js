@@ -66,11 +66,15 @@ export default class Dispatcher {
             .playTrack({ track: this.current.track });
     }
     
-    destroy(reason) {
+    async destroy(reason) {
         this.queue.length = 0;
         this.player.connection.disconnect();
+        if (this.nowPlayingMessage) {
+            await this.nowPlayingMessage.delete().catch(() => null);
+            this.nowPlayingMessage = null;
+        }
         this.client.queue.delete(this.guild.id);
-        container.logger.debug(`Destroyed the player & connection @ guild "${this.guild.id}"\nReason: ${reason || 'No Reason Provided'}`);
+        container.logger.debug(`Destroyed the player & connection @ guild "${this.guild.id}"\nReason: ${reason || 'No reason provided'}`);
         if (this.stopped) return;
         /*
         this.channel
