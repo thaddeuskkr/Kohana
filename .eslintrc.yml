@@ -13,7 +13,7 @@ rules:
     - 4
   linebreak-style:
     - error
-    - unix
+    - windows
   quotes:
     - error
     - single
