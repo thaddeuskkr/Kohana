@@ -28,7 +28,7 @@ export class PlayCommand extends Command {
                 .addStringOption((option) => 
                     option
                         .setName('query')
-                        .setDescription('What would you like to search?')
+                        .setDescription('What would you like to search? Supports URLs from many sources and search queries.')
                         .setRequired(true)
                 )
                 .addStringOption((option) =>
