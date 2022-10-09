@@ -26,6 +26,6 @@ export class StopCommand extends Command {
         dispatcher.repeat = 'off';
         dispatcher.stopped = true;
         dispatcher.player.stopTrack();
-        await interaction.editReply({ embeds: [this.container.client.util.successEmbed('Stopped the player and cleared the queue.')] });
+        await interaction.editReply({ embeds: [this.container.client.util.successEmbed('Stopped the player.')] });
     }
 }
