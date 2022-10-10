@@ -28,13 +28,13 @@ export class PlayCommand extends Command {
                 .addStringOption((option) => 
                     option
                         .setName('query')
-                        .setDescription('What would you like to search? Supports URLs from many sources and search queries.')
+                        .setDescription('What would you like to search? Supports URLs from many sources and search queries from 3 sources.')
                         .setRequired(true)
                 )
                 .addStringOption((option) =>
                     option
                         .setName('source')
-                        .setDescription('Where would you like to play music from? (Defaults to YouTube Music)')
+                        .setDescription('Where would you like to search for music from? (Defaults to YouTube Music)')
                         .setRequired(false)
                         .addChoices(
                             { name: 'YouTube Music', value: 'ytmsearch' },
