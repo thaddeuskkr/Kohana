@@ -39,8 +39,7 @@ export class PlayCommand extends Command {
                         .addChoices(
                             { name: 'YouTube Music', value: 'ytmsearch' },
                             { name: 'YouTube', value: 'ytsearch' },
-                            { name: 'SoundCloud', value: 'scsearch' },
-                            // { name: 'Spotify', value: 'spotifysearch' }
+                            { name: 'SoundCloud', value: 'scsearch' }
                         )
                 )
                 .addBooleanOption((option) => 
