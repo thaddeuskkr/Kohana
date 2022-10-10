@@ -2,6 +2,7 @@ import { LogLevel, SapphireClient, container } from '@sapphire/framework';
 import { Shoukaku, Connectors } from 'shoukaku';
 import { Intents } from 'discord.js';
 import { AutoPoster } from 'topgg-autoposter';
+import Keyv from 'keyv';
 
 import { Queue } from './util/queue.js';
 import config from './config.js';
@@ -43,6 +44,7 @@ client.shoukaku = new Shoukaku(new Connectors.DiscordJS(client), client.config.l
 client.util = Util;
 client.queue = new Queue(client);
 client.ap = AutoPoster(client.config.dbl, client);
+client.db = new Keyv(client.config.db, { collection: 'kohana-db1' });
 
 process.on('unhandledRejection', (error) => {
     container.logger.error(error);
