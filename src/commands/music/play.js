@@ -37,9 +37,9 @@ export class PlayCommand extends Command {
                         .setDescription('Where would you like to search for music from? (Defaults to YouTube Music)')
                         .setRequired(false)
                         .addChoices(
-                            { name: 'YouTube Music', value: 'ytmsearch' },
-                            { name: 'YouTube', value: 'ytsearch' },
-                            { name: 'SoundCloud', value: 'scsearch' }
+                            { name: 'YouTube Music / ytm', value: 'ytmsearch' },
+                            { name: 'YouTube / yt', value: 'ytsearch' },
+                            { name: 'SoundCloud / sc', value: 'scsearch' }
                         )
                 )
                 .addBooleanOption((option) => 
