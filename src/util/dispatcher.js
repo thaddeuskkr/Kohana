@@ -42,8 +42,13 @@ export default class Dispatcher {
                 this.play();
             })
             .on('stuck', () => {
+                const stuckTrack = this.current;
                 if (this.repeat === 'one') this.queue.unshift(this.current);
                 if (this.repeat === 'all') this.queue.push(this.current);
+                if (this.nowPlayingMessage) {
+                    this.nowPlayingMessage.edit({ embeds: [container.client.util.errorEmbed(`Failed to play track **${stuckTrack.info.title}** - **${stuckTrack.info.author}**`)] }).catch(() => null);
+                    this.nowPlayingMessage = null;
+                }
                 this.play();
             })
             .on('closed', _errorHandler)
