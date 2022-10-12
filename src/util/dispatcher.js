@@ -34,8 +34,8 @@ export default class Dispatcher {
             })
             .on('end', async () => {
                 if (this.repeat === 'one') this.queue.unshift(this.current);
-                if (this.repeat === 'all') this.queue.push(this.current);
-                if (this.nowPlayingMessage) {
+                if (this.repeat === 'all' && !this.current.skipped) this.queue.push(this.current);
+                if (this.nowPlayingMessage && this.repeat !== 'one') {
                     await this.nowPlayingMessage.delete().catch(() => null);
                     this.nowPlayingMessage = null;
                 }
