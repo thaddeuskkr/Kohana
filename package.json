@@ -7,7 +7,8 @@
   "type": "module",
   "scripts": {
     "start": "pm2 start src/index.js --name kohana --no-autorestart",
-    "test": "node src/index.js"
+    "test": "node src/index.js",
+    "lockonly": "npm i --package-lock-only"
   },
   "repository": {
     "type": "git",
@@ -33,16 +34,19 @@
     "@sapphire/plugin-logger": "^3.0.1",
     "@sapphire/plugin-subcommands": "^3.2.3",
     "@top-gg/sdk": "^3.1.3",
+    "bufferutil": "^4.0.6",
     "common-tags": "^1.8.2",
     "discord-api-types": "^0.37.12",
     "discord.js": "^13.12.0",
     "dotenv": "^16.0.3",
+    "erlpack": "github:discord/erlpack",
     "keyv": "^4.5.0",
     "lodash": "^4.17.21",
     "pako": "^2.0.4",
     "pretty-ms": "^8.0.0",
     "shoukaku": "^3.2.0",
-    "topgg-autoposter": "^2.0.1"
+    "topgg-autoposter": "^2.0.1",
+    "utf-8-validate": "^5.0.9"
   },
   "devDependencies": {
     "eslint": "^8.25.0"
