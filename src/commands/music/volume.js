@@ -18,7 +18,7 @@ export class VolumeCommand extends Command {
                 .setDMPermission(false)
                 .addIntegerOption((option) => 
                     option
-                        .setName('newVolume')
+                        .setName('new-volume')
                         .setDescription('Sets the new volume of the player (%), accepts an integer between 0 and 200.')
                         .setRequired(false)
                 )
