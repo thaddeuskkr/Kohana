@@ -16,5 +16,11 @@ export class ReadyListener extends Listener {
         this.container.logger.info(`Logged in as ${username} (${id})`);
         await client.user.setStatus('idle');
         await client.user.setActivity(`/ • v${version}`, { type: 'LISTENING' });
+        let current = 0;
+        setInterval(() => {
+            const activity = this.container.client.config.activities[current];
+            client.user.setActivity(activity);
+            current = current >= this.container.client.config.activities.length - 1 ? 0 : current + 1;
+        }, this.container.client.config.activityRotateDelay * 1000);
     }
 }
