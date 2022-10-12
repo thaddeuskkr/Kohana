@@ -29,15 +29,15 @@ export class QueueCommand extends Command {
         const chunked = _.chunk(queue, this.container.client.config.tracksPerPage || 15);
         const pm = new PaginatedMessage();
         let looptxt = '';
-        if (dispatcher.repeat === 'all') looptxt = ' • Looping the queue.';
-        else if (dispatcher.repeat === 'one') looptxt = ' • Looping the current track.';
+        if (dispatcher.repeat === 'all') looptxt = ' • Looping the queue';
+        else if (dispatcher.repeat === 'one') looptxt = ' • Looping the current track';
         if (!queue.length) {
             pm.addPageEmbed((embed) => {
                 embed
                     .setAuthor({ name: `${interaction.guild.name} - Queue`, iconURL: interaction.guild.iconURL({ size: 4096 }) })
                     .setDescription(`**Now playing:**\n[${current.info.title} - ${current.info.author}](${current.info.uri}) (${current.info.requester.toString()})\n\`${this.humanizeTime(dispatcher.player.position)} ${this.container.client.util.createProgressBar(dispatcher.player.position, current.info.length, 20)} ${this.humanizeTime(current.info.length)}\`\n\n***No tracks in queue.***`)
                     .setColor(this.container.client.config.color)
-                    .setFooter({ text: this.container.client.config.footer.text });
+                    .setFooter({ text: `${this.container.client.config.footer.text}${looptxt}` });
                 return embed;
             });
         }
@@ -52,7 +52,7 @@ export class QueueCommand extends Command {
                     .setAuthor({ name: `${interaction.guild.name} - Queue`, iconURL: interaction.guild.iconURL({ size: 4096 }) })
                     .setDescription(`[${current.info.title} - ${current.info.author}](${current.info.uri}) (${current.info.requester.toString()})\n\`${this.humanizeTime(dispatcher.player.position)} ${this.container.client.util.createProgressBar(dispatcher.player.position, current.info.length, 20)} ${this.humanizeTime(current.info.length)}\`\n\n` + descriptionLines.join('\n'))
                     .setColor(this.container.client.config.color)
-                    .setFooter({ text: queue.length > 500 ? `Showing up to 500 of ${queue.length} total tracks in queue.${looptxt}` : `${queue.length} tracks in queue.` + looptxt});
+                    .setFooter({ text: queue.length > 500 ? `Showing up to 500 of ${queue.length} total tracks in queue${looptxt}` : `${queue.length} tracks in queue` + looptxt});
                 return embed;
             });
         }
