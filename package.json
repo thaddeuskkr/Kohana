@@ -1,6 +1,6 @@
 {
   "name": "kohana",
-  "version": "1.14.2",
+  "version": "1.14.0",
   "description": "A Discord bot with many features, built from the ground up.",
   "main": "src/index.js",
   "exports": "./src/index.js",
@@ -8,7 +8,8 @@
   "scripts": {
     "start": "pm2 start src/index.js --name kohana --no-autorestart",
     "test": "node src/index.js",
-    "lockonly": "npm i --package-lock-only"
+    "lockonly": "npm i --package-lock-only",
+    "lines": "cloc $(git ls-files)"
   },
   "repository": {
     "type": "git",
