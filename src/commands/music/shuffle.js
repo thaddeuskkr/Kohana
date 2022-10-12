@@ -6,7 +6,7 @@ export class ShuffleCommand extends Command {
             ...options,
             name: 'shuffle',
             description: 'Shuffles the queue.',
-            preconditions: ['voice', 'sameVoice', 'dispatcher']
+            preconditions: ['voice', 'sameVoice', 'dispatcher', 'queue']
         });
     }
 
@@ -21,7 +21,6 @@ export class ShuffleCommand extends Command {
     
     async chatInputRun(interaction) {
         const dispatcher = this.container.client.queue.get(interaction.guildId);
-        if (!dispatcher.queue.length) return interaction.reply({ embeds: [this.container.client.util.errorEmbed('There are no tracks in the queue.')] });
         dispatcher.queue = dispatcher.queue.sort(() => Math.random() - 0.5);
         await interaction.reply({ embeds: [this.container.client.util.successEmbed(`Shuffled **${dispatcher.queue.length} tracks**.`)] });
     }

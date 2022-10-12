@@ -6,7 +6,7 @@ export class ClearCommand extends Command {
             ...options,
             name: 'clear',
             description: 'Clears the queue.',
-            preconditions: ['voice', 'sameVoice', 'dispatcher']
+            preconditions: ['voice', 'sameVoice', 'dispatcher', 'queue']
         });
     }
 
@@ -21,7 +21,6 @@ export class ClearCommand extends Command {
     
     async chatInputRun(interaction) {
         const dispatcher = this.container.client.queue.get(interaction.guildId);
-        if (!dispatcher.queue.length) return interaction.reply({ embeds: [this.container.client.util.errorEmbed('There are no tracks in the queue.')] });
         await interaction.reply({ embeds: [this.container.client.util.successEmbed(`Cleared **${dispatcher.queue.length} tracks**.`)] });
         dispatcher.queue.length = 0;
     }

@@ -6,7 +6,7 @@ export class RemoveCommand extends Command {
             ...options,
             name: 'remove',
             description: 'Removes a certain track from the queue.',
-            preconditions: ['voice', 'sameVoice', 'dispatcher']
+            preconditions: ['voice', 'sameVoice', 'dispatcher', 'queue']
         });
     }
 
@@ -28,7 +28,6 @@ export class RemoveCommand extends Command {
     async chatInputRun(interaction) {
         const index = interaction.options.getInteger('index');
         const dispatcher = this.container.client.queue.get(interaction.guildId);
-        if (!dispatcher.queue.length) return interaction.reply({ embeds: [this.container.client.util.errorEmbed('There are no tracks in the queue.')] });
         if (index < 1 || index > dispatcher.queue.length) return interaction.reply({ embeds: [this.container.client.util.errorEmbed(`Invalid queue index (accepts **1** to **${dispatcher.queue.length}**).`)] });
         const track = dispatcher.queue.splice(index - 1, 1)[0];
         await interaction.reply({ embeds: [this.container.client.util.successEmbed(`Removed **${track.info.title}** - **${track.info.author}** from the queue.`)] });
