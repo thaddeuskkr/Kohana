@@ -27,8 +27,8 @@ export class VolumeCommand extends Command {
     
     async chatInputRun(interaction) {
         const dispatcher = this.container.client.queue.get(interaction.guildId);
-        const nv = interaction.options.getInteger('newVolume');
-        if (!nv) return interaction.reply({ embeds: [this.container.client.util.embed(`The current volume is ${dispatcher.player.volume * 100}%.`)] });
+        const nv = interaction.options.getInteger('new-volume');
+        if (!nv) return interaction.reply({ embeds: [this.container.client.util.embed(`The current volume is **${dispatcher.player.filters.volume * 100}%**.`)] });
         if (!VolumeCommand.inRange(nv, this.container.client.config.minVol || 0, this.container.client.config.maxVol || 200)) {
             return interaction.reply({ embeds: [this.container.client.util.errorEmbed(`Out of volume range (**${this.container.client.config.minVol}%** to **${this.container.client.config.maxVol}%**)`)] });
         }
