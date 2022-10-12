@@ -62,7 +62,7 @@ export class PlayCommand extends Command {
 
         if (PlayCommand.checkURL(query)) {
             const result = await node.rest.resolve(query);
-            if (!result?.tracks.length) return interaction.editReply({ embeds: [this.container.client.util.errorEmbed(`There were no results for your query \`${query}\``)] });
+            if (!result?.tracks.length) return interaction.editReply({ embeds: [this.container.client.util.errorEmbed(`There were no results for your query \`${query}\`.`)] });
             const track = result.tracks.shift();
             const playlist = result.loadType === 'PLAYLIST_LOADED';
             const dispatcher = await this.container.client.queue.handle(interaction.guild, interaction.member, interaction.channel, node, track, playlist ? false : next);
@@ -75,8 +75,9 @@ export class PlayCommand extends Command {
             return;
         }
 
-        const search = await node.rest.resolve(`${source}:${query}`);
-        if (!search?.tracks.length) return interaction.editReply({ embeds: [this.container.client.util.errorEmbed(`There were no results for your query \`${query}\``)] });
+        let search = await node.rest.resolve(`${source}:${query}`);
+        if (!search?.tracks.length) search = await node.rest.resolve(`${source}:${query}`); // Retry
+        if (!search?.tracks.length) return interaction.editReply({ embeds: [this.container.client.util.errorEmbed(`There were no results for your query \`${query}\`.`)] });
         const track = search.tracks.shift();
         const dispatcher = await this.container.client.queue.handle(interaction.guild, interaction.member, interaction.channel, node, track, next);
         if (dispatcher === 'Busy') return interaction.editReply({ embeds: [this.container.client.util.errorEmbed('The dispatcher is currently busy, please try again later.')] });
