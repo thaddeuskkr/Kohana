@@ -8,8 +8,7 @@
   "scripts": {
     "start": "pm2 start src/index.js --name kohana --no-autorestart",
     "test": "node src/index.js",
-    "lockonly": "npm i --package-lock-only",
-    "lines": "cloc $(git ls-files)"
+    "lockonly": "npm i --package-lock-only"
   },
   "repository": {
     "type": "git",
