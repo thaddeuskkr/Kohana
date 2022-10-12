@@ -1,4 +1,5 @@
 import { Command } from '@sapphire/framework';
+// import { ApplicationCommandType } from 'discord-api-types/v9';
 
 export class PlayCommand extends Command {
     constructor(context, options) {
@@ -8,6 +9,7 @@ export class PlayCommand extends Command {
             description: 'Plays music from the multiple supported sources.',
             preconditions: ['voice', 'sameVoice']
         });
+        this.node = null;
     }
     
     static checkURL(string) {
@@ -30,6 +32,7 @@ export class PlayCommand extends Command {
                         .setName('query')
                         .setDescription('What would you like to search? Supports URLs from many sources and search queries from 3 sources.')
                         .setRequired(true)
+                        .setAutocomplete(true)
                 )
                 .addStringOption((option) =>
                     option
@@ -49,6 +52,14 @@ export class PlayCommand extends Command {
                         .setRequired(false)
                 )
         );
+        /*
+        registry.registerContextMenuCommand((builder) => 
+            builder
+                .setName(this.name)
+                .setType(ApplicationCommandType.Message)
+                .setDMPermission(false)
+        );
+        */
     }
     
     async chatInputRun(interaction) {
@@ -84,5 +95,40 @@ export class PlayCommand extends Command {
         if (dispatcher === 'Busy') return interaction.editReply({ embeds: [this.container.client.util.errorEmbed('The dispatcher is currently busy, please try again later.')] });
         await interaction.editReply({ embeds: [this.container.client.util.successEmbed(`Queued [**${track.info.title}** - **${track.info.author}**](${track.info.uri}).`)] }).catch(() => null);
         if (!dispatcher?.current) dispatcher?.play();
+    }
+
+    async autocompleteRun(interaction) {
+        let node = this.node;
+        if (!node) {
+            node = await this.container.client.shoukaku.getNode();
+            this.node = node;
+        }
+        let query = interaction.options.getString('query');
+        let qSource;
+        if (query.includes('yt:')) {
+            query = query.replace('yt:', '');
+            qSource = 'ytsearch';
+        } else if (query.includes('ytm:')) {
+            query = query.replace('ytm:', '');
+            qSource = 'ytmsearch';
+        } else if (query.includes('sc:')) {
+            query = query.replace('sc:', '');
+            qSource = 'scsearch';
+        } else qSource = undefined;
+        if (!query) return;
+        const source = qSource || interaction.options.getString('source') || 'ytmsearch';
+        const search = await node.rest.resolve(`${source}:${query}`);
+        if (search.loadType !== 'SEARCH_RESULT') return interaction.respond([{ name: query, value: query }]);
+        return interaction.respond(search.tracks.map((track) => ({ name: PlayCommand.truncate(`${track.info.title} - ${track.info.author}`, 97), value: track.info.uri })));
+    }
+
+    /*
+    async contextMenuRun(interaction) {
+        
+    }
+    */
+
+    static truncate(str, n){
+        return (str.length > n) ? str.slice(0, n-1) + '...' : str;
     }
 }
