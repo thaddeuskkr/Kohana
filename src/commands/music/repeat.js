@@ -39,6 +39,9 @@ export class RepeatCommand extends Command {
             text = 'Now repeating the currently playing track.';
             break;
         case 'all':
+            if (!dispatcher.queue.length) {
+                return interaction.reply({ embeds: [this.container.client.util.errorEmbed('There are no tracks in queue.')] });
+            }
             text = 'Now repeating the whole queue.';
             break;
         case 'off':
