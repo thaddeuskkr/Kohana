@@ -61,7 +61,8 @@ export class PlayCommand extends Command {
         if (!channel) return interaction.editReply({ embeds: [this.container.client.util.errorEmbed('You are not connected to a voice channel.')] });
 
         if (PlayCommand.checkURL(query)) {
-            const result = await node.rest.resolve(query);
+            let result = await node.rest.resolve(query); 
+            if (!result?.tracks.length) result = await node.rest.resolve(query); // Retry
             if (!result?.tracks.length) return interaction.editReply({ embeds: [this.container.client.util.errorEmbed(`There were no results for your query \`${query}\`.`)] });
             const track = result.tracks.shift();
             const playlist = result.loadType === 'PLAYLIST_LOADED';
