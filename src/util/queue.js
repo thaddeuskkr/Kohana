@@ -5,6 +5,7 @@ export class Queue extends Map {
     constructor(client, iterable) {
         super(iterable);
         this.client = client;
+        this.previous = null;
     }
 
     async handle(guild, member, channel, node, track, next) {
