@@ -5,7 +5,8 @@ export class ShoukakuReadyListener extends Listener {
         super(context, {
             ...options,
             emitter: container.client.shoukaku,
-            event: 'ready'
+            event: 'ready',
+            name: 'shoukakuReady'
         });
     }
     run(name) {

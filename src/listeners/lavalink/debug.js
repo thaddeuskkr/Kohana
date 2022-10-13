@@ -5,7 +5,8 @@ export class ShoukakuDebugListener extends Listener {
         super(context, {
             ...options,
             emitter: container.client.shoukaku,
-            event: 'debug'
+            event: 'debug',
+            name: 'shoukakuDebug'
         });
     }
     run(_, message) {

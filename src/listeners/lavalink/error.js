@@ -5,7 +5,8 @@ export class ShoukakuErrorListener extends Listener {
         super(context, {
             ...options,
             emitter: container.client.shoukaku,
-            event: 'error'
+            event: 'error',
+            name: 'shoukakuError'
         });
     }
     run(_, error) {

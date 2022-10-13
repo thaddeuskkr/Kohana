@@ -5,7 +5,8 @@ export class DatabaseErrorListener extends Listener {
         super(context, {
             ...options,
             emitter: container.client.db,
-            event: 'error'
+            event: 'error',
+            name: 'databaseError'
         });
     }
     run(error) {
