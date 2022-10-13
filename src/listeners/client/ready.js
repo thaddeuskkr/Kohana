@@ -1,7 +1,7 @@
 import { Listener } from '@sapphire/framework';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-const { version } = require('../../package.json');
+const { version } = require('../../../package.json');
 
 export class ReadyListener extends Listener {
     constructor(context, options) {
