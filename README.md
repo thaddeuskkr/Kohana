@@ -1,13 +1,13 @@
 # Kohana
-Kohana is a new Discord bot with many features upcoming. Uses the Sapphire framework and discord.js to bring you the optimal performance at a reasonable cost - free!  
+Kohana is a new Discord bot with many features. Uses the **Sapphire Framework** and **discord.js** to bring you the optimal performance at a reasonable cost - free!  
 Currently in development and testing.  
   
 ### Features
-- High-quality music (with support for multiple sources such as YouTube, Spotify, SoundCloud and more)
-- Slash commands (easy to use and modern)
-- Free forever (no vote-locked commands, no paywalls)
-- Reliable (basically no downtime after release)
-- Actively developed (new features are added regularly and your feedback is greatly appreciated)
+- **High-quality music** (with support for multiple sources such as YouTube, Spotify, SoundCloud and more)
+- **Slash commands** (easy to use and modern - we even recently implemented autocomplete!)
+- **Free forever** (no vote-locked commands, no paywalls)
+- **Reliable** (basically no downtime after release)
+- **Actively developed** (new features are added regularly and your feedback is greatly appreciated)
 - More features coming soon
   
 ### Links
