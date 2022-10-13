@@ -28,10 +28,6 @@ export default class Dispatcher {
                 else if (this.repeat === 'all' || this.repeat === 'off') {
                     _notifiedOnce = false;
                 }
-                if (this.nowPlayingMessage) {
-                    await this.nowPlayingMessage.edit({ embeds: [container.client.util.errorEmbed(`An error occurred while playing track **${this.queue.previous.info.title}** - **${this.queue.previous.info.author}**`)] }).catch(() => null);
-                    this.nowPlayingMessage = null;
-                }
                 this.nowPlayingMessage = await this.channel
                     .send({ embeds: [ container.client.util.embed(`${container.client.config.emojis.playing} [**${this.current.info.title}** - **${this.current.info.author}**](${this.current.info.uri}) \`${Dispatcher.humanizeTime(this.current.info.length)}\` (${this.current.info.requester.toString()})`) ] })
                     .catch(() => null);
