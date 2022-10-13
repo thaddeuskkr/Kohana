@@ -14,7 +14,8 @@ export default class Dispatcher {
 
         let _notifiedOnce = false;
         let _errorHandler = data => {
-            if (data instanceof Error || data instanceof Object) container.logger.error(data);
+            // Don't log if disconnected by user, I'm quite sure 4014 is the code.
+            if ((data instanceof Error || data instanceof Object) && data.code !== 4014) container.logger.error(data);
             this.queue.length = 0;
             this.destroy();
         };
