@@ -40,7 +40,10 @@ const client = new SapphireClient({
 });
 
 client.config = config;
-client.shoukaku = new Shoukaku(new Connectors.DiscordJS(client), client.config.lavalink);
+client.shoukaku = new Shoukaku(new Connectors.DiscordJS(client), client.config.lavalink, {
+    userAgent: `Kohana-v${client.config.version}`,
+    reconnectTries: 100
+});
 client.util = Util;
 client.queue = new Queue(client);
 client.ap = AutoPoster(client.config.dbl, client);
