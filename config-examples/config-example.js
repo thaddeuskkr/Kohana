@@ -21,6 +21,7 @@ export default {
     dbl: '' || process.env.DBL,
     // Queue options (defaults to 10)
     tracksPerPage: 20,
+    defaultVolume: 75,
     minVol: 0,
     maxVol: 200,
     // Emotes
