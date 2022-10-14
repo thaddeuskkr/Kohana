@@ -7,7 +7,7 @@ services:
         tty: true
         env_file:
             - .env
-        ports:
+        # ports:
             # - 6969:6969
         volumes:
             - .:/usr/kohana
