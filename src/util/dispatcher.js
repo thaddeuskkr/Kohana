@@ -69,7 +69,7 @@ export default class Dispatcher {
         if (!this.exists || !this.queue.length) return this.destroy();
         this.current = this.queue.shift();
         this.player
-            .setVolume(0.7)
+            .setVolume((this.client.config.defaultVolume || 75) / 100)
             .playTrack({ track: this.current.track });
     }
     
