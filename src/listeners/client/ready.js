@@ -14,7 +14,7 @@ export class ReadyListener extends Listener {
     async run (client) {
         const { username, id } = client.user;
         this.container.logger.info(`Logged in as ${username} (${id})`);
-        await client.user.setStatus('idle');
+        await client.user.setStatus(this.container.client.config.status);
         await client.user.setActivity(`/ • v${version}`, { type: 'LISTENING' });
         let current = 0;
         setInterval(() => {
