@@ -5,6 +5,8 @@ services:
         image: thadkkr/kohana:latest
         restart: on-failure
         tty: true
+        environment:
+            - ENVIRONMENT="production"
         env_file:
             - .env
         # ports:
