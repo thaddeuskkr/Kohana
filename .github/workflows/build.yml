@@ -27,3 +27,4 @@ jobs:
         with:
           push: true
           tags: thadkkr/kohana:latest
+          platforms: linux/amd64,linux/arm64
