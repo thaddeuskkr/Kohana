@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+    kohana:
+        container_name: kohana
+        image: thadkkr/kohana:latest
+        restart: on-failure
+        tty: true
+        env_file:
+            - .env
+        ports:
+            # - 6969:6969
+        volumes:
+            - .:/usr/kohana
