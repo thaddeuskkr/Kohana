@@ -13,6 +13,6 @@ export class VoicePrecondition extends Precondition {
     }
 
     async checkInVc(member) {
-        return member.voice?.channel?.id ? this.ok() : this.error({ message: 'You are not in a voice channel!' });
+        return member.voice?.channel?.id ? this.ok() : this.error({ message: 'You are not in a voice channel.' });
     }
 }
