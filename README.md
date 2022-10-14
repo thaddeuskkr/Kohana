@@ -16,6 +16,29 @@ Currently in development and testing.
 - [top.gg (Discord Bot List)](https://top.gg/bot/998515288117096559)
 - [Community / Support](https://discord.com/invite/8ZxsPYwgJ9)  
   
+### Self-hosting (not recommended)
+***You are highly encouraged to use the public version (invite above) since doing so helps me as well, therefore no self-hosting support will be provided. However, if you're a developer and would like to contribute, here are instructions to self-host.***  
+  
+**Kohana utilises Docker in production. In order to run the bot, ensure you have Docker and Docker Compose installed.**  
+1. Clone the repository to your computer / server  
+```sh
+git clone https://github.com/thaddeuskkr/Kohana.git && cd Kohana
+```  
+2. Copy the configuration files to the relevant directories
+```sh
+cp config-examples/config-example.js src/config.js && cp config-examples/.env.example .env
+```  
+3. Fill in the configuration files
+```sh
+nano .env
+nano src/config.js
+```  
+4. Run the bot using Docker Compose
+```sh
+docker compose up -d # Compose V2
+```  
+Do take note that edits to the bot's pieces outside of the container will still be hot-reloaded, since the filesystems are linked via a volume.
+
 ### License
 Kohana is published under the GNU General Public License v3.0, which allows you to distribute, use commercially, modify and privately use the bot. However, should you choose to do so, you are to disclose the source of the code, state the changes you have made, and publish the modified code under the same license.  
 ```
