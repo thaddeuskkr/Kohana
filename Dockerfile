@@ -1,6 +1,6 @@
 FROM node:latest
 # Use the latest node.js version
-WORKDIR /kohana
+WORKDIR /usr/kohana
 # Set the working directory
 COPY package*.json ./
 # Copy package.json and package-lock.json to the working directory
