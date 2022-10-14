@@ -2,7 +2,7 @@ version: '3.9'
 services:
     kohana:
         container_name: kohana
-        image: thadkkr/kohana:latest
+        build: .
         restart: on-failure
         tty: true
         environment:
