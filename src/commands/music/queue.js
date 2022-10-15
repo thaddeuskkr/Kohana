@@ -41,6 +41,10 @@ export class QueueCommand extends Command {
                 return embed;
             });
         }
+        let queueDuration = 0;
+        for (const track of queue) {
+            queueDuration += track.info.length;
+        }
         for (let x = 0; x < chunked.length; x++) {
             let descriptionLines = [];
             for (let i = 0; i < chunked[x].length; i++) {
@@ -52,7 +56,7 @@ export class QueueCommand extends Command {
                     .setAuthor({ name: `${interaction.guild.name} - Queue`, iconURL: interaction.guild.iconURL({ size: 4096 }) })
                     .setDescription(`[${current.info.title} - ${current.info.author}](${current.info.uri}) (${current.info.requester.toString()})\n\`${this.humanizeTime(dispatcher.player.position)} ${this.container.client.util.createProgressBar(dispatcher.player.position, current.info.length, 20)} ${this.humanizeTime(current.info.length)}\`\n\n` + descriptionLines.join('\n'))
                     .setColor(this.container.client.config.color)
-                    .setFooter({ text: queue.length > 500 ? `Showing up to 500 of ${queue.length} total tracks in queue${looptxt}` : `${queue.length} tracks in queue` + looptxt});
+                    .setFooter({ text: queue.length > 500 ? `Showing up to 500 of ${queue.length} total tracks in queue (${this.humanizeTime(queueDuration)})${looptxt}` : `${queue.length} tracks in queue (${this.humanizeTime(queueDuration)})${looptxt}`});
                 return embed;
             });
         }
