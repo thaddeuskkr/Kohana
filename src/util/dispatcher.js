@@ -47,11 +47,10 @@ export default class Dispatcher {
                 if (this.repeat === 'all' && !this.current.skipped) this.queue.push(this.current);
                 if (this.nowPlayingMessage && this.repeat !== 'one') {
                     const msgs = await this.channel.messages.fetch({ limit: 1 });
-                    if (msgs.filter(m => m.id === this.nowPlayingMessage.id)) return;
+                    if (msgs.filter(m => m.id === this.nowPlayingMessage.id)) return this.play();
                     await this.nowPlayingMessage.delete().catch(() => null);
                     this.nowPlayingMessage = null;
                 }
-                this.play();
             })
             .on('stuck', () => {
                 const stuckTrack = this.current;
