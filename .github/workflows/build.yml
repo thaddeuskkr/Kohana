@@ -12,8 +12,9 @@ on:
       - '!src/preconditions/**' 
       # Any update of dependencies (or version change) should require a build.
       - 'package*.json'
-      # Change of Dockerfile should require a build.
+      # Change of Dockerfile or build configuration should require a build.
       - 'Dockerfile'
+      - '.github/workflows/build.yml'
 
 jobs:
   docker:
