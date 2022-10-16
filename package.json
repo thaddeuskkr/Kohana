@@ -1,6 +1,6 @@
 {
   "name": "kohana",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "description": "A Discord bot with many features, built from the ground up.",
   "main": "src/index.js",
   "exports": "./src/index.js",
