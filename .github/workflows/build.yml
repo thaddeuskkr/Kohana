@@ -4,6 +4,16 @@ on:
   push:
     branches:
       - 'master'
+    paths:
+      # These files are capable of hot reloading, therefore a build is not needed.
+      - 'src/**'
+      - '!src/commands/**'
+      - '!src/listeners/**'
+      - '!src/preconditions/**' 
+      # Any update of dependencies (or version change) should require a build.
+      - 'package*.json'
+      # Change of Dockerfile should require a build.
+      - 'Dockerfile'
 
 jobs:
   docker:
