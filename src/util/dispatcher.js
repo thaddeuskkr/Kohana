@@ -31,7 +31,7 @@ export default class Dispatcher {
                 }
                 if (this.nowPlayingMessage) {
                     const msgs = await this.channel.messages.fetch({ limit: 1, force: true });
-                    if (msgs.first.id === this.nowPlayingMessage.id) {
+                    if (msgs.first().id === this.nowPlayingMessage.id) {
                         await this.nowPlayingMessage
                             .edit({ embeds: [ container.client.util.embed(`${container.client.config.emojis.playing} [**${this.current.info.title}** - **${this.current.info.author}**](${this.current.info.uri}) \`${Dispatcher.humanizeTime(this.current.info.length)}\` (${this.current.info.requester.toString()})`) ] })
                             .catch(() => null);
@@ -47,9 +47,11 @@ export default class Dispatcher {
                 if (this.repeat === 'all' && !this.current.skipped) this.queue.push(this.current);
                 if (this.nowPlayingMessage && this.repeat !== 'one') {
                     const msgs = await this.channel.messages.fetch({ limit: 1, force: true });
-                    if (msgs.first.id === this.nowPlayingMessage.id) return this.play();
-                    await this.nowPlayingMessage.delete().catch(() => null);
-                    this.nowPlayingMessage = null;
+                    if (msgs.first().id === this.nowPlayingMessage.id) return this.play();
+                    else {
+                        await this.nowPlayingMessage.delete().catch(() => null);
+                        this.nowPlayingMessage = null;
+                    }
                 }
                 this.play();
             })
