@@ -65,6 +65,7 @@ export default class Dispatcher {
     }
 
     play() {
+        if (this.guild.me?.voice?.channel?.type === 'GUILD_STAGE_VOICE') this.guild.me.voice.setSuppressed(false);
         this.queue.previous = this.current;
         if (!this.exists || !this.queue.length) return this.destroy();
         this.current = this.queue.shift();
