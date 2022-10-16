@@ -9,11 +9,11 @@ export class SameVoicePrecondition extends Precondition {
         });
     }
     async chatInputRun(interaction) {
-        return this.checkInSameVc(interaction.member, interaction.guild.me);
+        return this.checkInSameVc(interaction.member, interaction.guild.me, interaction);
     }
 
-    async checkInSameVc(member, me) {
-        if (me.voice.channelId === null) return this.ok();
+    async checkInSameVc(member, me, interaction) {
+        if (me.voice.channelId === null || !this.container.client.queue.get(interaction.guildId)?.current) return this.ok();
         return member.voice.channel.id === me.voice.channel.id ? this.ok() : this.error({ message: `Join <#${me.voice.channel.id}> before executing this command.` });
     }
 }
