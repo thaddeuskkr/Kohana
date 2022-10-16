@@ -52,7 +52,7 @@ export default class Dispatcher {
                 }
                 this.play();
             })
-            .on('closed', _errorHandler)
+            // .on('closed', _errorHandler)
             .on('error', _errorHandler);
     }
 
@@ -65,7 +65,7 @@ export default class Dispatcher {
     }
 
     play() {
-        if (this.guild.me?.voice?.channel?.type === 'GUILD_STAGE_VOICE') this.guild.me.voice.setSuppressed(false);
+        if (this.guild.me?.voice?.channel?.type === 'GUILD_STAGE_VOICE') this.guild.me?.voice?.setSuppressed(false).catch(() => null);
         this.queue.previous = this.current;
         if (!this.exists || !this.queue.length) return this.destroy();
         this.current = this.queue.shift();
