@@ -35,7 +35,7 @@ export class LyricsCommand extends Command {
         query = query || `${dispatcher.current.info.title.replace('(Lyrics)', '')} - ${dispatcher.current.info.author.replace(' - Topic', '')}`; // most common things to replace
         const lyrics = await findLyrics.LyricsFinder(query);
         if (!lyrics || lyrics instanceof Error) {
-            return interaction.editReply({ embeds: [this.container.client.util.errorEmbed(`There were no results for your query \`${query}\`.${!interaction.options.getString('query') ? 'Try searching using a query instead.' : ''}`)] });
+            return interaction.editReply({ embeds: [this.container.client.util.errorEmbed(`No results for \`${query}\`.${!interaction.options.getString('query') ? 'Try searching using a query instead.' : ''}`)] });
         } else {
             const lyr = LyricsCommand.splitLyrics(lyrics);
             const pm = new PaginatedMessage();
