@@ -31,7 +31,7 @@ export class LyricsCommand extends Command {
         await interaction.deferReply();
         const dispatcher = this.container.client.queue.get(interaction.guildId);
         let query = interaction.options.getString('query');
-        if (!query && !dispatcher.current) return interaction.editReply({ embeds: [this.container.client.util.errorEmbed('You did not provide a query and there is nothing playing.')], ephemeral: true });
+        if (!query && !dispatcher?.current) return interaction.editReply({ embeds: [this.container.client.util.errorEmbed('You did not provide a query and there is nothing playing.')], ephemeral: true });
         query = query || `${dispatcher.current.info.title.replace('(Lyrics)', '')} - ${dispatcher.current.info.author.replace(' - Topic', '')}`; // most common things to replace
         const lyrics = await findLyrics.LyricsFinder(query);
         if (!lyrics || lyrics instanceof Error) {
