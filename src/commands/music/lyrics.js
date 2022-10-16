@@ -42,7 +42,7 @@ export class LyricsCommand extends Command {
             for (const page of lyr) {
                 pm.addPageEmbed((embed) => {
                     embed
-                        .setAuthor({ name: 'Lyrics' + !interaction.options.getString('query') ? ' (Custom query)' : '' })
+                        .setAuthor({ name: `Lyrics${!interaction.options.getString('query') ? ' (Custom query)' : ''}` })
                         .setTitle(query)
                         .setDescription(page)
                         .setFooter(this.container.client.config.footer)
