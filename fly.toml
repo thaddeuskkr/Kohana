@@ -1,0 +1,12 @@
+# fly.toml file generated for kohana on 2022-10-20T00:40:53+08:00
+
+app = "kohana"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  builder = "heroku/buildpacks:20"
+
+[experimental]
+  auto_rollback = true
