@@ -6,8 +6,8 @@
   "exports": "./src/index.js",
   "type": "module",
   "scripts": {
-    "start": "pm2 start src/index.js --name kohana --no-autorestart",
-    "test": "node src/index.js",
+    "start": "node src/index.js",
+    "pm2": "pm2 start src/index.js --name kohana --no-autorestart",
     "lockonly": "npm i --package-lock-only"
   },
   "repository": {
