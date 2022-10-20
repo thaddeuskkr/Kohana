@@ -1,5 +1,5 @@
-![Kohana (1) (1)](https://user-images.githubusercontent.com/49682825/195901165-7801d058-ab4d-4628-9be3-db97d8880d56.png)
 <p align="center">
+<img src="https://user-images.githubusercontent.com/49682825/195901165-7801d058-ab4d-4628-9be3-db97d8880d56.png" alt="Kohana banner" />
 Kohana is a clean, feature-rich Discord bot. Made with Node.js, utilises the <strong>Sapphire Framework</strong> and <strong>discord.js</strong> to bring you the optimal performance at a very reasonable cost - free!  
 </p>  
   
