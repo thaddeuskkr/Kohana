@@ -45,17 +45,20 @@ export class KickCommand extends Command {
         const user = interaction.options.getUser('member');
         const member = interaction.guild.members.cache.get(user.id);
         const reason = interaction.options.getString('reason') || 'No reason provided.';
-        await this.kickMember(member, reason);
+        await this.kickMember(member, `Requested by ${interaction.user.tag} | ` + reason, interaction);
         await interaction.editReply({ embeds: [this.container.client.util.successEmbed(`Kicked **<@${member.id}>**. | \`${reason}\``)] });
     }
     async contextMenuRun(interaction) {
         if (interaction.isUserContextMenu() && interaction.targetMember instanceof GuildMember) {
-            await this.kickMember(interaction.targetMember, 'Kicked using context menu - reason cannot be provided.');
+            await this.kickMember(interaction.targetMember, `Requested by ${interaction.user.tag} | Kicked using context menu - reason cannot be provided.`, interaction);
             await interaction.reply({ embeds: [this.container.client.util.successEmbed(`Kicked **<@${interaction.targetMember.id}>**.`)] });
         }
     }
 
-    async kickMember(member, reason) {
-        await member.kick(reason);
+    async kickMember(member, reason, interaction) {
+        await member.kick(reason).catch(async () => {
+            if (interaction.deferred) return interaction.editReply({ embeds: [this.container.client.util.errorEmbed(`Failed to kick **<@${member.id}>**. | \`Check that the bot has a role higher than the member you're trying to kick.\``)] });
+            else return interaction.reply({ embeds: [this.container.client.util.errorEmbed(`Failed to kick **<@${member.id}>**. | \`Check that the bot has a role higher than the member you're trying to kick.\``)] });
+        });
     }
 }
