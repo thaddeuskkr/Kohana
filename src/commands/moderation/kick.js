@@ -46,12 +46,12 @@ export class KickCommand extends Command {
         const member = interaction.guild.members.cache.get(user.id);
         const reason = interaction.options.getString('reason') || 'No reason provided.';
         await this.kickMember(member, reason);
-        await interaction.reply({ embeds: [this.container.client.util.successEmbed(`Kicked **${interaction.targetMember.tag}**. | \`${reason}\``)] });
+        await interaction.reply({ embeds: [this.container.client.util.successEmbed(`Kicked **<@${member.id}>**. | \`${reason}\``)] });
     }
     async contextMenuRun(interaction) {
         if (interaction.isUserContextMenu() && interaction.targetMember instanceof GuildMember) {
             await this.kickMember(interaction.targetMember, 'Kicked using context menu - reason cannot be provided.');
-            await interaction.reply({ embeds: [this.container.client.util.successEmbed(`Kicked **${interaction.targetMember.tag}**.`)] });
+            await interaction.reply({ embeds: [this.container.client.util.successEmbed(`Kicked **<@${interaction.targetMember.id}>**.`)] });
         }
     }
 
