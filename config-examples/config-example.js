@@ -23,6 +23,8 @@ export default {
     ],
     // top.gg token (Discord Bot List)
     dbl: '' || process.env.DBL,
+    // Array of owner IDs
+    ownerIds: ['275830234262142978'],
     // Queue options (defaults to 10)
     tracksPerPage: 20,
     defaultVolume: 75, // %
