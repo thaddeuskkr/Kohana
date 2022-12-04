@@ -3,6 +3,9 @@
 Kohana is a clean, feature-rich Discord bot. Made with Node.js, utilises the <strong>Sapphire Framework</strong> and <strong>discord.js</strong> to bring you the optimal performance at a very reasonable cost - free!  
 </p>  
   
+### Notice
+Development for Kohana is paused until Sapphire v4 is released. Until then, this bot will only receive security updates or critical updates.
+
 ### Features
 - **High-quality music** (with support for multiple sources such as YouTube, Spotify, SoundCloud and more)
 - **Slash commands** (easy to use and modern - we even recently implemented autocomplete!)
