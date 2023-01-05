@@ -47,7 +47,7 @@
     "pretty-ms": "^8.0.0",
     "shoukaku": "^3.2.2",
     "topgg-autoposter": "^2.0.1",
-    "utf-8-validate": "^5.0.10"
+    "utf-8-validate": "^6.0.0"
   },
   "optionalDependencies": {
     "erlpack": "github:discord/erlpack"
